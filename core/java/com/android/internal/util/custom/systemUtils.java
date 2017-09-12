@@ -19,12 +19,18 @@ package com.android.internal.util.custom;
 import android.app.AlertDialog;
 import android.app.IActivityManager;
 import android.app.ActivityManager;
+import android.content.Intent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.SystemProperties;
+import android.util.DisplayMetrics;
+import android.view.IWindowManager;
+import android.view.WindowManagerGlobal;
+import android.text.TextUtils;
 
 import com.android.internal.R;
 import com.android.internal.statusbar.IStatusBarService;
@@ -34,6 +40,18 @@ import java.lang.ref.WeakReference;
 public class systemUtils {
 
     private static final int RESTART_TIMEOUT = 1000;
+    public static final String INTENT_SCREENSHOT = "action_handler_screenshot";
+    public static final String INTENT_REGION_SCREENSHOT = "action_handler_region_screenshot";
+
+
+    public static void takeScreenshot(boolean full) {
+        IWindowManager wm = WindowManagerGlobal.getWindowManagerService();
+        try {
+            wm.sendCustomAction(new Intent(full? INTENT_SCREENSHOT : INTENT_REGION_SCREENSHOT));
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void showSystemRestartDialog(Context context) {
         new AlertDialog.Builder(context)
