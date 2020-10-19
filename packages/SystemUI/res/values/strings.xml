@@ -361,6 +361,11 @@
     <!-- Description of the screen recording notification channel [CHAR LIMIT=NONE]-->
     <string name="issuerecord_channel_description">Ongoing notification for an issue collection session</string>
 
+    <!-- Label for UI element which allows deleting the screenshot [CHAR LIMIT=30] -->
+    <string name="screenshot_delete_label">Delete</string>
+    <!-- Content description indicating that tapping the element will allow deleting the screenshot [CHAR LIMIT=NONE] -->
+    <string name="screenshot_delete_description">Delete screenshot</string>
+
     <!-- Notification text displayed when we are recording the screen [CHAR LIMIT=100]-->
     <string name="issuerecord_ongoing_screen_only">Recording issue</string>
     <!-- Label for notification action to share issue recording [CHAR LIMIT=35] -->
