@@ -3606,4 +3606,10 @@
     <string name="home_controls_dream_label">Home Controls</string>
     <!-- Description for home control panel [CHAR LIMIT=67] -->
     <string name="home_controls_dream_description">Quickly access your home controls as a screensaver</string>
+
+    <!-- Screen record -->
+    <string name="screenrecord_stopdot_label">Show stop dot</string>
+    <string name="screenrecord_stopdot_summary">Long press to move it</string>
+    <string name="screenrecord_lowquality_label">Lower quality</string>
+    <string name="screenrecord_lowquality_summary">For smaller file size</string>
 </resources>

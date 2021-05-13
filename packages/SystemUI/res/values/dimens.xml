@@ -2027,4 +2027,7 @@
     <!-- SliceView icon size -->
     <dimen name="abc_slice_big_pic_min_height">64dp</dimen>
     <dimen name="abc_slice_big_pic_max_height">64dp</dimen>
+
+    <!-- Screen Record -->
+    <dimen name="screenrecord_dot_size">48dp</dimen>
 </resources>
