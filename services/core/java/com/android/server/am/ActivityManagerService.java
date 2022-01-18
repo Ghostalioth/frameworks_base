@@ -21326,6 +21326,10 @@ public class ActivityManagerService extends IActivityManager.Stub
         }
     }
 
+    public boolean shouldForceCutoutFullscreen(String packageName) {
+        return mActivityTaskManager.shouldForceCutoutFullscreen(packageName);
+    }
+
     @GuardedBy("this")
     void enqueuePendingTopAppIfNecessaryLocked() {
         mPendingStartActivityUids.enqueuePendingTopAppIfNecessaryLocked(this);
