@@ -380,6 +380,9 @@
     <!-- A toast message shown when the issue recording cannot be started due to a generic error [CHAR LIMIT=NONE] -->
     <string name="issuerecord_start_error">Error starting issue recording</string>
 
+    <!-- Label for UI element which allows to use lens on screenshot [CHAR LIMIT=30] -->
+    <string name="screenshot_lens_label">Lens</string>
+
     <!-- Cling help message title when hiding the navigation bar entering immersive mode [CHAR LIMIT=none] -->
     <string name="immersive_cling_title">Viewing full screen</string>
     <!-- Cling help message description when hiding the navigation bar entering immersive mode [CHAR LIMIT=none] -->
