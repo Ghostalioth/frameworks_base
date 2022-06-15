@@ -281,6 +281,16 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
     private static final String BANNER_ACTION_SETUP =
             "com.android.systemui.statusbar.banner_action_setup";
 
+<<<<<<< HEAD
+=======
+    private static final String FORCE_SHOW_NAVBAR =
+            "lineagesystem:" + LineageSettings.System.FORCE_SHOW_NAVBAR;
+    private static final String STATUS_BAR_BRIGHTNESS_CONTROL =
+            "system:" + Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL;
+    private static final String QS_TRANSPARENCY =
+            "system:" + Settings.System.QS_TRANSPARENCY;
+
+>>>>>>> 12799e1b114e (SystemUI: Use Tuner API to apply QS custom alpha)
     private static final int MSG_LAUNCH_TRANSITION_TIMEOUT = 1003;
     // 1020-1040 reserved for BaseStatusBar
 
@@ -927,6 +937,13 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
 
         createAndAddWindows(result);
 
+<<<<<<< HEAD
+=======
+        mTunerService.addTunable(this, FORCE_SHOW_NAVBAR);
+        mTunerService.addTunable(this, STATUS_BAR_BRIGHTNESS_CONTROL);
+        mTunerService.addTunable(this, QS_TRANSPARENCY);
+
+>>>>>>> 12799e1b114e (SystemUI: Use Tuner API to apply QS custom alpha)
         // Set up the initial notification state. This needs to happen before CommandQueue.disable()
         setUpPresenter();
 
@@ -2923,6 +2940,18 @@ public class CentralSurfacesImpl implements CoreStartable, CentralSurfaces {
         return (mStatusBarStateController.isDozing()
                 && mDozeServiceHost.getIgnoreTouchWhilePulsing())
                 || mScreenOffAnimationController.shouldIgnoreKeyguardTouches();
+    }
+
+    @Override
+    public void onTuningChanged(String key, String newValue) {
+        switch (key) {
+            case QS_TRANSPARENCY:
+                mScrimController.setCustomScrimAlpha(
+                        TunerService.parseInteger(newValue, 100));
+                break;
+            default:
+                break;
+         }
     }
 
     // Begin Extra BaseStatusBar methods.
