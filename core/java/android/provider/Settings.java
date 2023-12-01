@@ -6447,6 +6447,11 @@ public final class Settings {
          */
         @Readable
         public static final String GAMESPACE_SUPPRESS_FULLSCREEN_INTENT = "gamespace_suppress_fullscreen_intent";
+        
+        /**
+         * @hide
+         */
+        public static final String WIFI_STANDARD_ICON = "wifi_standard_icon";
 
         /**
          * Keys we no longer back up under the current schema, but want to continue to
