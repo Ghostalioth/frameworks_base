@@ -24,6 +24,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.om.IOverlayManager;
 import android.content.om.OverlayInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ProviderInfo;
@@ -72,6 +73,33 @@ public class ThemeUtils {
         mOverlayManager = IOverlayManager.Stub
                 .asInterface(ServiceManager.getService(Context.OVERLAY_SERVICE));
         pm = context.getPackageManager();
+    }
+
+    public static boolean isPackageInstalled(Context context, String packageName, boolean ignoreState) {
+        if (packageName != null) {
+            try {
+                PackageInfo pi = context.getPackageManager().getPackageInfo(packageName, 0);
+                if (!pi.applicationInfo.enabled && !ignoreState) {
+                    return false;
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isPackageInstalled(Context context, String packageName) {
+        return isPackageInstalled(context, packageName, true);
+    }
+
+    public static boolean isPackageEnabled(Context context, String packageName) {
+        try {
+            PackageInfo pi = context.getPackageManager().getPackageInfo(packageName, 0);
+            return pi.applicationInfo.enabled;
+        } catch (PackageManager.NameNotFoundException notFound) {
+            return false;
+        }
     }
 
     public void setOverlayEnabled(String category, String packageName, String target) {
