@@ -114,6 +114,7 @@ public class BrightnessController implements ToggleSlider.Listener, MirroredBrig
     private float mBrightnessMax = PowerManager.BRIGHTNESS_MAX;
 
     private ValueAnimator mSliderAnimator;
+    private long lastVibrateTime = 0;
 
     private Vibrator mVibrator;
     private static final VibrationEffect BRIGHTNESS_SLIDER_HAPTIC =
@@ -376,8 +377,13 @@ public class BrightnessController implements ToggleSlider.Listener, MirroredBrig
         setBrightness(valFloat);
 
         // Give haptic feedback only if brightness is changed manually
-        if (mBrightnessSliderHaptic > 0 && mVibrator != null && tracking)
-            VibrationUtils.triggerVibration(mContext, mBrightnessSliderHaptic);
+        if (mBrightnessSliderHaptic > 0 && mVibrator != null && tracking) {
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - lastVibrateTime >= 100L) {
+                VibrationUtils.triggerVibration(mContext, mBrightnessSliderHaptic);
+                lastVibrateTime = currentTime;
+            }
+        }
 
         if (!tracking) {
             AsyncTask.execute(new Runnable() {
