@@ -41,6 +41,7 @@ import android.graphics.drawable.shapes.PathShape;
 import android.net.Uri;
 import android.os.RemoteException;
 import android.os.ServiceManager;
+import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
@@ -126,7 +127,7 @@ public class ThemeUtils {
     public void writeSettings(String category, String packageName, boolean disable) {
         final String overlayPackageJson = Settings.Secure.getStringForUser(
                 mContext.getContentResolver(),
-                Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES, USER_SYSTEM);
+                Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES, UserHandle.USER_CURRENT);
         JSONObject object;
         try {
             if (overlayPackageJson == null) {
@@ -141,7 +142,7 @@ public class ThemeUtils {
             }
             Settings.Secure.putStringForUser(mContext.getContentResolver(),
                     Settings.Secure.THEME_CUSTOMIZATION_OVERLAY_PACKAGES,
-                    object.toString(), USER_SYSTEM);
+                    object.toString(), UserHandle.USER_CURRENT);
         } catch (JSONException e) {
             Log.e(TAG, "Failed to parse THEME_CUSTOMIZATION_OVERLAY_PACKAGES.", e);
         }
