@@ -1352,6 +1352,7 @@ public class Instrumentation {
         Application app = getFactory(context.getPackageName())
                 .instantiateApplication(cl, className);
         app.attach(context);
+        com.android.internal.util.android.PropsHooksUtils.setProps(context);
         return app;
     }
     
@@ -1369,6 +1370,7 @@ public class Instrumentation {
             ClassNotFoundException {
         Application app = (Application)clazz.newInstance();
         app.attach(context);
+        com.android.internal.util.android.PropsHooksUtils.setProps(context);
         return app;
     }
 
